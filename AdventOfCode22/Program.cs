@@ -15,7 +15,7 @@ namespace AdventOfCode2022
             var container = new Container(new DefaultRegistry());
             var assignments = container.GetInstance<Assignments>();
 
-            assignments.Day1Part2();
+            assignments.Day2Part2();
         }
 
     }
