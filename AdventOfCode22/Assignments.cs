@@ -92,7 +92,69 @@ namespace AdventOfCode2022
             Console.ReadKey();
         }
 
+        public void Day3Part1()
+        {
+            var inputList = System.IO.File.ReadAllText(@"..\..\Day3.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
 
+            int result = 0;
+
+
+            foreach (var inputRow in inputList)
+            {
+                int halfInputRow = inputRow.Length / 2;
+                string firstHalf = inputRow.Substring(0, halfInputRow);
+                string secondHalf = inputRow.Substring(halfInputRow, halfInputRow);
+
+
+                var aSet = new HashSet<char>(firstHalf);
+                var bSet = new HashSet<char>(secondHalf);
+
+                aSet.IntersectWith(bSet);
+
+                char matchingChar = aSet.First();
+
+                int index = (int)matchingChar % 32;
+
+                result += index;
+
+                if (char.IsUpper(matchingChar))
+                    result += 26;
+            }
+
+            Console.WriteLine(result);
+            Console.ReadKey();
+        }
+
+        public void Day3Part2()
+        {
+            var inputList = System.IO.File.ReadAllText(@"..\..\Day3.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+
+            int result = 0;
+
+
+            for (int i = 0; i < inputList.Count; i += 3)
+            {
+                var aSet = new HashSet<char>(inputList[i]);
+                var bSet = new HashSet<char>(inputList[i + 1]);
+                var cSet = new HashSet<char>(inputList[i + 2]);
+
+                aSet.IntersectWith(bSet);
+                aSet.IntersectWith(cSet);
+
+                char matchingChar = aSet.First();
+
+                int index = (int)matchingChar % 32;
+
+                result += index;
+
+                if (char.IsUpper(matchingChar))
+                    result += 26;
+
+            }
+
+            Console.WriteLine(result);
+            Console.ReadKey();
+        }
 
         private const string Rock = "rock";
         private const string Paper = "paper";
